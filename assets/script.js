@@ -28,7 +28,6 @@ for (let index = 0; index < numberOfslides; index++) {
 	divDot.classList.add('dot');
 	const dotContainer = document.querySelector('.dots');
 	dotContainer.appendChild(divDot);
-
 	let divImage = document.createElement('img');
 	divImage.classList.add('banner-img');
 	divImage.src = slide.image;
@@ -47,59 +46,95 @@ for (let index = 0; index < numberOfslides; index++) {
 	*/
 }
 
+const imgArray = document.querySelectorAll('img.banner-img');
+const dotsArray = document.querySelectorAll('div.dot');
+const dotsArrayLength = dotsArray.length;
+
 initializeDot();
 
 function initializeDot() {
 
-	let dotsArray = document.querySelectorAll('div.dot')
-	for (i = 0; i < dotsArray.length; i++) {
-		console.log("Dot n': " + i + "");
-
+	//let dotsArray = document.querySelectorAll('div.dot')
+	for (i = 0; i < dotsArrayLength; i++) {
 		if (i === 0) {
-			dotsArray[i].addEventListener("click", selectDot(dotsArray[i]));
-			console.log("IF");
+			dotsArray[i].addEventListener("click", selectDot(dotsArray[i], imgArray[i]));
 		}
 		else {
-			dotsArray[i].addEventListener("click", deleteDotSelected(dotsArray[i]));
-			console.log("ELSE");
+			dotsArray[i].addEventListener("click", deleteDotSelected(dotsArray[i], imgArray[i]));
 		}
 	}
 
-	function selectDot(dotSelected) {
+	function selectDot(dotSelected, imgToDisplay) {
 		dotSelected.classList.toggle('dot_selected');
+		imgToDisplay.style.display = "block";
 	}
 
-	function deleteDotSelected(dotUnselected) {
+	function deleteDotSelected(dotUnselected, imgToDisplay) {
 		dotUnselected.classList.remove('dot_selected');
+		imgToDisplay.style.display = "none";
 	}
 }
 
-const dotsArray = document.querySelectorAll('div.dot');
-
-for (let i = 0; i < dotsArray.length; i++) {
+for (let i = 0; i < dotsArrayLength; i++) {
 	dotsArray[i].addEventListener('click', function () {
 		//		console.log("Boucle");
-		for (let i = 0; i < dotsArray.length; i++) {
-		//	console.log("Class name = " + dotsArray[i].className + "");
+		for (let i = 0; i < dotsArrayLength; i++) {
+			//	console.log("Class name = " + dotsArray[i].className + "");
 			if (dotsArray[i].className === 'dot dot_selected') {
-		//		console.log("IF");
+				//		console.log("IF");
 				dotsArray[i].classList.remove('dot_selected');
+				imgArray[i].style.display = "none";
 			}
 		}
 		dotsArray[i].classList.toggle('dot_selected');
+		imgArray[i].style.display = "block";
 	})
 }
 
 const arrowLeft = document.getElementsByClassName('arrow_left');
+
 arrowLeft[0].addEventListener("click", function () {
 	console.log("Click on left");
-	
-
+	for (let i = 0; i < dotsArrayLength; i++) {
+		if (dotsArray[i].className === 'dot dot_selected') {
+			if (i === 0) {
+				i = dotsArrayLength;
+				dotsArray[0].classList.remove('dot_selected');
+				imgArray[0].style.display = "none";
+				dotsArray[dotsArrayLength - 1].classList.add('dot_selected');
+				imgArray[dotsArrayLength - 1].style.display = "block";
+			}
+			else {
+				dotsArray[i].classList.remove('dot_selected');
+				imgArray[i].style.display = "none";
+				dotsArray[i - 1].classList.add('dot_selected');
+				imgArray[i - 1].style.display = "block";
+			}
+		}
+	}
 });
 
 const arrowRight = document.getElementsByClassName('arrow_right');
+
 arrowRight[0].addEventListener("click", function () {
 	console.log("Click on right");
+	for (let i = dotsArrayLength - 1; i >= 0; i--) {
+		if (dotsArray[i].className === 'dot dot_selected') {
+			if (i === (dotsArrayLength - 1)) {
+				i = 0;
+				dotsArray[dotsArrayLength - 1].classList.remove('dot_selected');
+				imgArray[dotsArrayLength - 1].style.display = "none";
+				dotsArray[0].classList.add('dot_selected');
+				imgArray[0].style.display = "block";
+			}
+			else {
+				dotsArray[i].classList.remove('dot_selected');
+				imgArray[i].style.display = "none";
+				dotsArray[i + 1].classList.add('dot_selected');
+				imgArray[i + 1].style.display = "block";
+			}
+		}
+	}
 });
 
 
