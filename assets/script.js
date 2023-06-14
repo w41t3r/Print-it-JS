@@ -17,15 +17,6 @@ const slides = [
 	}
 ]
 
-const arrowLeft = document.getElementsByClassName('arrow_left');
-arrowLeft[0].addEventListener("click", function () {
-	console.log("Click on left");
-});
-
-const arrowRight = document.getElementsByClassName('arrow_right');
-arrowRight[0].addEventListener("click", function () {
-	console.log("Click on right");
-});
 
 numberOfslides = slides.length;
 console.log("Il y a " + numberOfslides + " element dans le tab slide");
@@ -83,15 +74,15 @@ function initializeDot() {
 	}
 }
 
-let dotsArray = document.querySelectorAll('div.dot');
+const dotsArray = document.querySelectorAll('div.dot');
 
 for (let i = 0; i < dotsArray.length; i++) {
 	dotsArray[i].addEventListener('click', function () {
 		//		console.log("Boucle");
 		for (let i = 0; i < dotsArray.length; i++) {
-			console.log("Class name = " + dotsArray[i].className + "");
+		//	console.log("Class name = " + dotsArray[i].className + "");
 			if (dotsArray[i].className === 'dot dot_selected') {
-				console.log("IF");
+		//		console.log("IF");
 				dotsArray[i].classList.remove('dot_selected');
 			}
 		}
@@ -99,6 +90,17 @@ for (let i = 0; i < dotsArray.length; i++) {
 	})
 }
 
+const arrowLeft = document.getElementsByClassName('arrow_left');
+arrowLeft[0].addEventListener("click", function () {
+	console.log("Click on left");
+	
+
+});
+
+const arrowRight = document.getElementsByClassName('arrow_right');
+arrowRight[0].addEventListener("click", function () {
+	console.log("Click on right");
+});
 
 
 
