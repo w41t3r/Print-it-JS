@@ -112,6 +112,7 @@ header {
 	width: 100%;
 	min-height: 470px;
 	position: relative;
+	background-color: #28363D;
 }
 .banner-img {
 	position: absolute;
@@ -127,9 +128,11 @@ header {
 	position: absolute;
 }
 #banner .arrow_left {
+	position: absolute;
 	left: 10px;
 }
 #banner .arrow_right {
+	position: absolute;
 	right: 10px;
 }
 /* Gestion des points du carrousel */
