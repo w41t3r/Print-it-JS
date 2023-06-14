@@ -38,15 +38,17 @@ for (let index = 0; index < numberOfslides; index++) {
 
 
 
-	/*	
+		// Load Text
 		let divTagLine = document.createElement('p');
 		divTagLine.innerHTML = slide.tagLine;
 		let textContainer = document.querySelector('#banner')
 		textContainer.appendChild(divTagLine);
-	*/
+
 }
 
 const imgArray = document.querySelectorAll('img.banner-img');
+const textArray = document.querySelectorAll('#banner p');
+//const textArray = document.closest('main#banner > p');
 const dotsArray = document.querySelectorAll('div.dot');
 const dotsArrayLength = dotsArray.length;
 
@@ -57,21 +59,24 @@ function initializeDot() {
 	//let dotsArray = document.querySelectorAll('div.dot')
 	for (i = 0; i < dotsArrayLength; i++) {
 		if (i === 0) {
-			dotsArray[i].addEventListener("click", selectDot(dotsArray[i], imgArray[i]));
+			dotsArray[i].addEventListener("click", selectDot(dotsArray[i], imgArray[i], textArray[i]));
 		}
 		else {
-			dotsArray[i].addEventListener("click", deleteDotSelected(dotsArray[i], imgArray[i]));
+			dotsArray[i].addEventListener("click", deleteDotSelected(dotsArray[i], imgArray[i], textArray[i]));
 		}
 	}
 
-	function selectDot(dotSelected, imgToDisplay) {
+	function selectDot(dotSelected, imgToDisplay, textToDisplay) {
 		dotSelected.classList.toggle('dot_selected');
 		imgToDisplay.style.display = "block";
+		textToDisplay.style.display = "block";
 	}
 
-	function deleteDotSelected(dotUnselected, imgToDisplay) {
+	function deleteDotSelected(dotUnselected, imgToHide, textToHide) {
 		dotUnselected.classList.remove('dot_selected');
-		imgToDisplay.style.display = "none";
+		imgToHide.style.display = "none";
+		textToHide.style.display = "none";
+		
 	}
 }
 
@@ -84,10 +89,12 @@ for (let i = 0; i < dotsArrayLength; i++) {
 				//		console.log("IF");
 				dotsArray[i].classList.remove('dot_selected');
 				imgArray[i].style.display = "none";
+				textArray[i].style.display = "none";
 			}
 		}
 		dotsArray[i].classList.toggle('dot_selected');
 		imgArray[i].style.display = "block";
+		textArray.style.display = "block";
 	})
 }
 
@@ -101,14 +108,18 @@ arrowLeft[0].addEventListener("click", function () {
 				i = dotsArrayLength;
 				dotsArray[0].classList.remove('dot_selected');
 				imgArray[0].style.display = "none";
+				textArray[0].style.display = "none";
 				dotsArray[dotsArrayLength - 1].classList.add('dot_selected');
 				imgArray[dotsArrayLength - 1].style.display = "block";
+				textArray[dotsArrayLength - 1].style.display = "block";
 			}
 			else {
 				dotsArray[i].classList.remove('dot_selected');
 				imgArray[i].style.display = "none";
+				textArray[i].style.display = "none";
 				dotsArray[i - 1].classList.add('dot_selected');
 				imgArray[i - 1].style.display = "block";
+				textArray[i - 1].style.display = "block";
 			}
 		}
 	}
@@ -124,14 +135,18 @@ arrowRight[0].addEventListener("click", function () {
 				i = 0;
 				dotsArray[dotsArrayLength - 1].classList.remove('dot_selected');
 				imgArray[dotsArrayLength - 1].style.display = "none";
+				textArray[dotsArrayLength - 1].style.display = "none";
 				dotsArray[0].classList.add('dot_selected');
 				imgArray[0].style.display = "block";
+				textArray[0].style.display = "block";
 			}
 			else {
 				dotsArray[i].classList.remove('dot_selected');
 				imgArray[i].style.display = "none";
+				textArray[i].style.display = "none";
 				dotsArray[i + 1].classList.add('dot_selected');
 				imgArray[i + 1].style.display = "block";
+				textArray[i + 1].style.display = "block";
 			}
 		}
 	}
