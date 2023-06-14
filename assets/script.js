@@ -60,7 +60,6 @@ initializeDot();
 
 function initializeDot() {
 
-
 	let dotsArray = document.querySelectorAll('div.dot')
 	for (i = 0; i < dotsArray.length; i++) {
 		console.log("Dot n': " + i + "");
@@ -84,13 +83,21 @@ function initializeDot() {
 	}
 }
 
+let dotsArray = document.querySelectorAll('div.dot');
 
-let dotsContainer = document.querySelector('.dots');
-
-dotsContainer.addEventListener('click', function () {
-	let dotSelected = document.querySelector('.dot');
-	dotSelected.classList.toggle('dot_selected');
-})
+for (let i = 0; i < dotsArray.length; i++) {
+	dotsArray[i].addEventListener('click', function () {
+		//		console.log("Boucle");
+		for (let i = 0; i < dotsArray.length; i++) {
+			console.log("Class name = " + dotsArray[i].className + "");
+			if (dotsArray[i].className === 'dot dot_selected') {
+				console.log("IF");
+				dotsArray[i].classList.remove('dot_selected');
+			}
+		}
+		dotsArray[i].classList.toggle('dot_selected');
+	})
+}
 
 
 
