@@ -17,18 +17,18 @@ const slides = [
 	}
 ]
 
-
 numberOfslides = slides.length;
-console.log("Il y a " + numberOfslides + " element dans le tab slide");
 
-
+// Generate HTML elements
 for (let index = 0; index < numberOfslides; index++) {
 	let slide = slides[index];
+
 	// Generate div .dot
 	let divDot = document.createElement('div');
 	divDot.classList.add('dot');
 	const dotContainer = document.querySelector('.dots');
 	dotContainer.appendChild(divDot);
+
 	// Generate image tag
 	let divImage = document.createElement('img');
 	divImage.classList.add('banner-img');
@@ -41,8 +41,8 @@ for (let index = 0; index < numberOfslides; index++) {
 	divTagLine.innerHTML = slide.tagLine;
 	let textContainer = document.querySelector('#banner')
 	textContainer.appendChild(divTagLine);
-
 }
+
 // Storing dots in an array
 const dotsArray = document.querySelectorAll('div.dot');
 // Storing images in an array
